@@ -93,6 +93,47 @@ async function readConfigWithFallback(fileName) {
     return {};
 }
 
+// Helper: Get property order template from defaults (for ordering preserved UI display)
+function getPropertyOrder(fileName) {
+    const defaultPath = path.join(DEFAULT_DIR, fileName);
+    if (fs.existsSync(defaultPath)) {
+        try {
+            const defaultData = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
+            return Object.keys(defaultData);
+        } catch (error) {
+            console.error(`Error reading default ${fileName} for ordering:`, error.message);
+            return [];
+        }
+    }
+    return [];
+}
+
+// Helper: Reorder object properties to match default template
+function orderObjectProperties(data, propertyOrder) {
+    if (!data || typeof data !== 'object' || Array.isArray(data)) {
+        return data;
+    }
+
+    const ordered = {};
+    const originalKeys = Object.keys(data);
+
+    // Add properties in template order first
+    propertyOrder.forEach(key => {
+        if (originalKeys.includes(key)) {
+            ordered[key] = data[key];
+        }
+    });
+
+    // Add any remaining properties not in template (preserve their order)
+    originalKeys.forEach(key => {
+        if (!propertyOrder.includes(key)) {
+            ordered[key] = data[key];
+        }
+    });
+
+    return ordered;
+}
+
 // GET endpoint to fetch all configs with fallback
 app.get('/api/configs', async (req, res) => {
     try {
@@ -104,7 +145,13 @@ app.get('/api/configs', async (req, res) => {
         // If database has some configs, use them with fallback to defaults
         CONFIG_FILES.forEach(fileName => {
             if (dbConfigs[fileName]) {
-                configs[fileName] = dbConfigs[fileName];
+                // If we have default template, use it to order properties consistently
+                const propertyOrder = getPropertyOrder(fileName);
+                if (propertyOrder.length > 0) {
+                    configs[fileName] = orderObjectProperties(dbConfigs[fileName], propertyOrder);
+                } else {
+                    configs[fileName] = dbConfigs[fileName];
+                }
             } else {
                 // Fall back to filesystem defaults if not in database
                 const defaultPath = path.join(DEFAULT_DIR, fileName);
@@ -236,7 +283,12 @@ app.get('/api/config/:filename', async (req, res) => {
         // Try database first
         const dbConfig = await db.getConfig(filename);
         if (dbConfig) {
-            res.type('application/json').json(dbConfig);
+            // Preserve property ordering using default template if available
+            const propertyOrder = getPropertyOrder(filename);
+            const orderedConfig = propertyOrder.length > 0
+                ? orderObjectProperties(dbConfig, propertyOrder)
+                : dbConfig;
+            res.type('application/json').json(orderedConfig);
             return;
         }
 

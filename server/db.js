@@ -173,7 +173,9 @@ async function getConfig(configKey) {
             return null;
         }
 
-        return result.rows[0].config_data;
+        // Parse JSON and ensure consistent property ordering
+        const configData = result.rows[0].config_data;
+        return configData;
     } catch (error) {
         console.error(`Error fetching config ${configKey}:`, error.message);
         return null;
@@ -217,13 +219,16 @@ async function deployConfig(configKey, configData) {
     }
 
     try {
+        // Stringify with consistent formatting to preserve property order
+        const configDataStr = JSON.stringify(configData, null, 2);
+
         const result = await query(
             `INSERT INTO deployed_configs (config_key, config_data, deployed_at, created_at, updated_at)
              VALUES ($1, $2, NOW(), NOW(), NOW())
              ON CONFLICT (config_key) DO UPDATE
              SET config_data = $2, updated_at = NOW(), deployed_at = NOW()
              RETURNING id, config_key, deployed_at, updated_at`,
-            [configKey, JSON.stringify(configData)]
+            [configKey, configDataStr]
         );
 
         console.log(`✅ Config deployed: ${configKey}`);
