@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@theme {
+    /* Mapping Tailwind color names to CSS variables */
+    --color-m3-primary: var(--m3-primary);
+    --color-m3-on-primary: var(--m3-on-primary);
+    --color-m3-primary-container: var(--m3-primary-container);
+    --color-m3-on-primary-container: var(--m3-on-primary-container);
+    --color-m3-secondary: var(--m3-secondary);
+    --color-m3-on-secondary: var(--m3-on-secondary);
+    --color-m3-secondary-container: var(--m3-secondary-container);
+    --color-m3-on-secondary-container: var(--m3-on-secondary-container);
+    --color-m3-tertiary: var(--m3-tertiary);
+    --color-m3-on-tertiary: var(--m3-on-tertiary);
+    --color-m3-tertiary-container: var(--m3-tertiary-container);
+    --color-m3-on-tertiary-container: var(--m3-on-tertiary-container);
+    --color-m3-error: var(--m3-error);
+    --color-m3-on-error: var(--m3-on-error);
+    --color-m3-error-container: var(--m3-error-container);
+    --color-m3-on-error-container: var(--m3-on-error-container);
+    --color-m3-background: var(--m3-background);
+    --color-m3-on-background: var(--m3-on-background);
+    --color-m3-surface: var(--m3-surface);
+    --color-m3-on-surface: var(--m3-on-surface);
+    --color-m3-surface-container: var(--m3-surface-container);
+    --color-m3-surface-variant: var(--m3-surface-variant);
+    --color-m3-on-surface-variant: var(--m3-on-surface-variant);
+    --color-m3-outline: var(--m3-outline);
+    --color-m3-outline-variant: var(--m3-outline-variant);
+    --color-m3-inverse-surface: var(--m3-inverse-surface);
+    --color-m3-inverse-on-surface: var(--m3-inverse-on-surface);
+    --color-m3-surface-container-low: var(--m3-surface-container-low);
+    --color-m3-surface-container-high: var(--m3-surface-container-high);
+
+    --radius-m3-sm: 12px;
+    --radius-m3-md: 16px;
+    --radius-m3-lg: 24px;
+    --radius-m3-xl: 40px;
+    --radius-m3-full: 9999px;
+
+    --shadow-m3-1: 0px 4px 12px rgba(0, 103, 177, 0.05);
+    --shadow-m3-2: 0px 8px 24px rgba(0, 103, 177, 0.08);
+    --shadow-m3-3: 0px 16px 48px rgba(0, 103, 177, 0.12);
+}
+
+/* Light Mode (Panasonic Avionics Premium Design) */
+:root {
+    --m3-primary: #0067B1;
+    --m3-on-primary: #FFFFFF;
+    --m3-primary-container: #E0F2FE;
+    --m3-on-primary-container: #0369A1;
+    --m3-secondary: #0041C0;
+    --m3-on-secondary: #FFFFFF;
+    --m3-secondary-container: #DBEAFE;
+    --m3-on-secondary-container: #1D4ED8;
+    --m3-tertiary: #0EA5E9;
+    --m3-on-tertiary: #FFFFFF;
+    --m3-tertiary-container: #F0F9FF;
+    --m3-on-tertiary-container: #0369A1;
+    --m3-error: #EF4444;
+    --m3-on-error: #FFFFFF;
+    --m3-error-container: #FEE2E2;
+    --m3-on-error-container: #991B1B;
+    --m3-background: #F1F5F9;
+    --m3-on-background: #0F172A;
+    --m3-surface: #FFFFFF;
+    --m3-on-surface: #1E293B;
+    --m3-surface-container: #F8FAFC;
+    --m3-surface-variant: #F1F5F9;
+    --m3-on-surface-variant: #475569;
+    --m3-outline: rgba(0, 103, 177, 0.12);
+    --m3-outline-variant: #CBD5E1;
+    --m3-inverse-surface: #0F172A;
+    --m3-inverse-on-surface: #F8FAFC;
+    --m3-surface-container-low: #FFFFFF;
+    --m3-surface-container-high: #F8FAFC;
+    --font-family-base: 'Outfit', sans-serif;
+    color-scheme: light;
+}
+
+/* Dark Mode - Blue Tinted */
+[data-color-scheme="dark"] {
+    --m3-primary: #7AC8FF;
+    --m3-on-primary: #002F5C;
+    --m3-primary-container: #004581;
+    --m3-on-primary-container: #D0E8FF;
+    --m3-secondary: #607A95;
+    --m3-on-secondary: #0F1E30;
+    --m3-secondary-container: #1D2F43;
+    --m3-on-secondary-container: #BBC8DC;
+    --m3-tertiary: #6CADCD;
+    --m3-on-tertiary: #001E35;
+    --m3-tertiary-container: #0B3C59;
+    --m3-on-tertiary-container: #D0E9FF;
+    --m3-error: #FFB4AB;
+    --m3-on-error: #690005;
+    --m3-error-container: #93000A;
+    --m3-on-error-container: #FFDAD6;
+    --m3-background: #0A1628;
+    --m3-on-background: #E2E8F0;
+    --m3-surface: #0A1628;
+    --m3-on-surface: #E2E8F0;
+    --m3-surface-container: #0B1E3A;
+    --m3-surface-variant: #162E4A;
+    --m3-on-surface-variant: #B0C8E0;
+    --m3-outline: rgba(122, 200, 255, 0.25);
+    --m3-outline-variant: #245885;
+    --m3-inverse-surface: #E2E8F0;
+    --m3-inverse-on-surface: #0A1628;
+    --m3-surface-container-low: #0B1E3A;
+    --m3-surface-container-high: #162E4A;
+    color-scheme: dark;
+}
+
+@layer base {
+    html {
+        color-scheme: light dark;
+        accent-color: var(--m3-primary);
+    }
+
+    body {
+        @apply antialiased;
+        font-family: var(--font-family-base);
+        background-color: var(--m3-background);
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(0, 103, 177, 0.03) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(0, 65, 192, 0.03) 0px, transparent 50%),
+            linear-gradient(to bottom, #F8FAFC 0%, var(--m3-background) 100%);
+        background-attachment: fixed;
+        color: var(--m3-on-background);
+        transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            color 0.4s ease,
+            border-color 0.4s ease;
+    }
+
+    [data-color-scheme="dark"] body {
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(122, 200, 255, 0.08) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(0, 103, 177, 0.06) 0px, transparent 50%),
+            linear-gradient(to bottom, #091420 0%, var(--m3-background) 100%);
+    }
+
+    * {
+        @apply border-m3-outline;
+        transition: background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+}
+
+/* Glass effect for Apple Theme */
+[data-theme="apple-glass"] .backdrop-blur-xl {
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-m3-primary/10 rounded-full border-4 border-transparent bg-clip-padding;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        @apply bg-m3-primary/30;
+    }
+}
+
+/* Remove number input spinner - Chrome, Safari */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove number input spinner - Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

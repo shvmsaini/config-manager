@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+.git
+.gitignore
+.env
+.env.local
+src
+public
+*.ts
+*.jsx
+*.tsx

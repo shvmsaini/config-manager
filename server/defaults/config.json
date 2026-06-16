@@ -1,0 +1,14 @@
+{
+  "appName": "NextGen Companion App",
+  "version": "1.0.0",
+  "environment": "production",
+  "appId": "24878e675a079865e8bfa686e5t7~046L6Ta462a057fe89591d7159c20d0b9f5c92407f6f126f4d583a40ef4ac3072c1",
+  "backgroundImage": "",
+  "defaultLanguage": "eng",
+  "headerWidget": "flightStatus",
+  "loaderWidget": "shimmer",
+  "errorWidget": "myErrorWidget",
+  "featureFlags": {
+    "enableFavorites": true
+  }
+}

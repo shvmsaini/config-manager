@@ -1,0 +1,210 @@
+{
+  "bannerCarousel": {
+    "type": "bannerCarousel",
+    "indicatorStyle": "none",
+    "style": "new",
+    "autoScroll": true,
+    "autoScrollDuration": "5",
+    "preferredImageSizeKey": "2_46"
+  },
+  "grid": {
+    "type": "grid",
+    "gridColumns": 3
+  },
+  "vertical_list": {
+    "type": "vertical_list"
+  },
+  "horizontal_list": {
+    "type": "horizontal_list"
+  },
+  "mediaList": {
+    "type": "mediaList",
+    "seatClass": "all",
+    "itemType": "mediaCard",
+    "maxItems": 6
+  },
+  "topFeatureMovies": {
+    "parent": "mediaList",
+    "categoryId": "2015",
+    "layoutType": "bannerCarousel",
+    "header": {
+      "text": "Top Featured Movies",
+      "subtext": "December Collection"
+    }
+  },
+  "trendingNow": {
+    "parent": "mediaList",
+    "categoryId": "11017",
+    "layoutType": "grid",
+    "header": {
+      "text": "Trending Now",
+      "subtext": "December Collection"
+    }
+  },
+  "latestShows": {
+    "parent": "mediaList",
+    "categoryId": "12006",
+    "layoutType": "vertical_list",
+    "header": {
+      "text": "Latest Shows",
+      "subtext": "New this week"
+    }
+  },
+  "mediaCard": {
+    "type": "mediaCard",
+    "vertical": {
+      "imageWidth": 120,
+      "imageHeight": 180,
+      "showTitle": true,
+      "showGenre": true,
+      "showDescription": true,
+      "descriptionMaxLines": 3,
+      "cardCornerRadius": 10,
+      "titleMaxLines": 1,
+      "showFavorite": false,
+      "showProgressBar": true,
+      "cardElevation": 16
+    },
+    "horizontal": {
+      "imageWidth": 120,
+      "imageHeight": 180,
+      "showTitle": true,
+      "showGenre": false,
+      "showDescription": true,
+      "descriptionMaxLines": 3,
+      "cardCornerRadius": 20,
+      "titleMaxLines": 1,
+      "showFavorite": false,
+      "showProgressBar": true,
+      "cardElevation": 16
+    },
+    "grid": {
+      "imageWidth": 120,
+      "imageHeight": 180,
+      "showTitle": true,
+      "showGenre": false,
+      "showDescription": true,
+      "descriptionMaxLines": 3,
+      "cardCornerRadius": 10,
+      "cardElevation": 16,
+      "showFavorite": false,
+      "showProgressBar": true,
+      "titleMaxLines": 1,
+      "favoriteIcon": "favorite",
+      "itemShape": "squircle"
+    },
+    "bannerCarousel": {
+      "preferredImageSizeKey": "2_46"
+    }
+  },
+  "flightStatus": {
+    "type": "flightStatus",
+    "cornerRadius": 0,
+    "showPlaneAnimationInPopup": false,
+    "backgroundImage": "",
+    "planeImage": "",
+    "animation": {
+      "animationType": "slideInVertically",
+      "slideFrom": "top",
+      "duration": 500
+    }
+  },
+  "seatPairing": {
+    "type": "seatPairing",
+    "animation": {
+      "animationType": "slideInVertically",
+      "duration": 500
+    }
+  },
+  "dpad": {
+    "type": "dpad",
+    "style": "default",
+    "animation": {
+      "animationType": "slideInVertically",
+      "duration": 500
+    }
+  },
+  "weatherWidget": {
+    "type": "weatherWidget",
+    "header": {
+      "text": "Current Weather"
+    },
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "shimmer": {
+    "type": "shimmer",
+    "targetValue": 1000,
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "myErrorWidget": {
+    "type": "myErrorWidget",
+    "message": "Oops! Something went wrong.",
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "paperFoldLoader": {
+    "type": "paperFoldLoader",
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "connectivity": {
+    "type": "connectivity",
+    "cornerRadius": 30,
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "movieDetails": {
+    "type": "movieDetails",
+    "preferredImageSizeKey": "2_46",
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "myList": {
+    "type": "myList",
+    "layoutType": "vertical_list",
+    "gridColumns": 3,
+    "itemType": "mediaCard",
+    "header": {
+      "text": "Your Favorites"
+    },
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "searchScreen": {
+    "type": "searchScreen",
+    "layoutType": "grid",
+    "itemType": "mediaCard",
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "profile": {
+    "type": "profile",
+    "animation": {
+      "animationType": "slideInHorizontally",
+      "duration": 500
+    }
+  },
+  "header": {
+    "type": "header",
+    "text": "The Title",
+    "subtext": "The Subtitle"
+  }
+}

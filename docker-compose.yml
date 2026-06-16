@@ -1,0 +1,15 @@
+services:
+  config-manager:
+    build: .
+    container_name: config-manager
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    volumes:
+      # Persist deployed configs across container restarts
+      - deployed_configs:/app/server/deployed_configs
+    restart: unless-stopped
+
+volumes:
+  deployed_configs:

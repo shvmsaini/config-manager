@@ -1,0 +1,25 @@
+{
+  "homePage": {
+    "widgets": [
+      "topFeatureMovies",
+      "trendingNow",
+      "latestShows",
+      "category"
+    ]
+  },
+  "favoritesPage": {
+    "widgets": [
+      "myList"
+    ]
+  },
+  "searchPage": {
+    "widgets": [
+      "searchScreen"
+    ]
+  },
+  "profilePage": {
+    "widgets": [
+      "profile"
+    ]
+  }
+}

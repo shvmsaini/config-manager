@@ -1,0 +1,29 @@
+# Use Node.js LTS as the base image
+FROM node:18-alpine
+
+# Set working directory in container
+WORKDIR /usr/src/app
+
+# Create the data directory structure in the standard location first
+RUN mkdir -p /usr/src/app/config /usr/src/app/deployed_configs /usr/src/app/defaults
+
+# Copy package.json and package-lock.json first
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy the rest of the application
+COPY . .
+
+# Copy built React app (if present)
+COPY ./public ./public || true
+
+# Server runs on port 3000 by default
+EXPOSE 3000
+
+# Create .env file with required environment variables
+RUN echo "PORT=3000" > .env
+
+# Start command - will use entrypoint script for Render Disk setup
+CMD ["node", "server.js"]

@@ -1,0 +1,35 @@
+{
+  "navPosition": "bottom",
+  "startDestination": "Home",
+  "style": "animated",
+  "swipeToChangePage": true,
+  "drawerPosition": "left",
+  "maxItems": 5,
+  "topRadius": 25,
+  "bottomRadius": 25,
+  "margin": 8,
+  "backgroundImage": "",
+  "showLabels": true,
+  "routes": [
+    {
+      "name": "Home",
+      "icon": "Home",
+      "page": "homePage"
+    },
+    {
+      "name": "Favorites",
+      "icon": "home",
+      "page": "favoritesPage"
+    },
+    {
+      "name": "Search",
+      "icon": "Search",
+      "page": "searchPage"
+    },
+    {
+      "name": "Profile",
+      "icon": "Profile",
+      "page": "profilePage"
+    }
+  ]
+}

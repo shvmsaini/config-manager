@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+server.log
+server/server.log
+
+# Environment variables
+.env
+.env.test
+.env.production
+.env.local
+vrack.env
+
+# IDE and Editor directories
+.idea/
+.vscode/
+.kilo/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific files/directories
+scratch/
+server/certs/
+server/deployed_configs/
+
+# Client specific (though client might have its own)
+client/dist/
+client/node_modules/
+
