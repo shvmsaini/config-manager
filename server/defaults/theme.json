@@ -1,38 +1,40 @@
 {
   "colors": {
+    "error": "#B00020",
     "primary": "#C59DA4",
+    "surface": "#202224",
     "onPrimary": "#fff1f1",
+    "onSurface": "#ffffff",
     "secondary": "#03DAC6",
     "background": "#fffbf7",
     "onBackground": "#0D1318",
-    "surface": "#202224",
-    "onSurface": "#ffffff",
-    "onSurfaceVariant": "#383d42",
-    "error": "#B00020",
     "text_primary": "#000000",
-    "text_secondary": "#8A000000"
+    "navBackground": "#CBB6C1",
+    "text_secondary": "#8A000000",
+    "onSurfaceVariant": "#383d42"
   },
   "darkColors": {
+    "error": "#CF6679",
     "primary": "#82686c",
+    "surface": "#202224",
     "onPrimary": "#FFFFFF",
+    "onSurface": "#ffffff",
     "secondary": "#03DAC6",
     "background": "#bbadae",
     "onBackground": "#0D1318",
-    "surface": "#202224",
-    "onSurface": "#ffffff",
-    "onSurfaceVariant": "#383d42",
-    "error": "#CF6679",
-    "text_primary": "#ffffff",
-    "text_secondary": "#ffffff"
+    "text_primary": "#000000",
+    "navBackground": "#CBB6C1",
+    "text_secondary": "#ffffff",
+    "onSurfaceVariant": "#383d42"
   },
   "fonts": {
-    "heading": "sans-serif",
-    "headingSize": 18,
-    "title": "sans-serif",
-    "titleSize": 14,
     "body": "sans-serif",
-    "bodySize": 12,
+    "title": "sans-serif",
     "caption": "sans-serif",
-    "captionSize": 11
+    "heading": "sans-serif",
+    "bodySize": 12,
+    "titleSize": 14,
+    "captionSize": 11,
+    "headingSize": 18
   }
 }

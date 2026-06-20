@@ -12,23 +12,23 @@
   "showLabels": true,
   "routes": [
     {
-      "name": "Home",
       "icon": "Home",
+      "name": "Home",
       "page": "homePage"
     },
     {
+      "icon": "Favorites",
       "name": "Favorites",
-      "icon": "home",
       "page": "favoritesPage"
     },
     {
-      "name": "Search",
       "icon": "Search",
+      "name": "Search",
       "page": "searchPage"
     },
     {
-      "name": "Profile",
       "icon": "Profile",
+      "name": "Profile",
       "page": "profilePage"
     }
   ]

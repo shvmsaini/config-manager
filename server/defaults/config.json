@@ -1,11 +1,12 @@
 {
   "appName": "NextGen Companion App",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "environment": "production",
   "appId": "24878e675a079865e8bfa686e5t7~046L6Ta462a057fe89591d7159c20d0b9f5c92407f6f126f4d583a40ef4ac3072c1",
-  "backgroundImage": "",
+  "backgroundImage": "https://images.unsplash.com/photo-1666891827542-3b03e82159b9?q=80&w=1276&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "defaultLanguage": "eng",
   "headerWidget": "flightStatus",
+  "footerWidget": "",
   "loaderWidget": "shimmer",
   "errorWidget": "myErrorWidget",
   "featureFlags": {
