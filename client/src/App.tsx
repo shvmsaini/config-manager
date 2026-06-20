@@ -101,7 +101,7 @@ function ConfigManager() {
     setDeployResult,
     handleDeploy,
     handleDownload,
-  } = useDeployment(token, configData, () => {
+  } = useDeployment(configData, () => {
     setTimeout(() => {
       reloadConfigs();
     }, 200);

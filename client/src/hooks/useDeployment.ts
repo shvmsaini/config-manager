@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import JSZip from 'jszip';
+import { useAuth } from '../context/AuthContext';
 
 // ── Safe JSON stringify helper ──────────────────────────────────────
 
@@ -22,12 +23,12 @@ interface DeployResult {
 }
 
 export function useDeployment(
-    token: string | null,
     configData: { [fileName: string]: any },
     onDeploySuccess?: () => void
 ) {
     const [isDeploying, setIsDeploying] = useState(false);
     const [deployResult, setDeployResult] = useState<DeployResult | null>(null);
+    const { authFetch } = useAuth();
 
     const handleDeploy = async (filesOverride?: { [fileName: string]: any } | React.MouseEvent) => {
         setIsDeploying(true);
@@ -40,11 +41,10 @@ export function useDeployment(
 
             const files = filesOverride || configData;
 
-            const response = await fetch('/api/deploy', {
+            const response = await authFetch('/api/deploy', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 },
                 body: safeStringify({ files }),
             });

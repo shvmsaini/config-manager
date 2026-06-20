@@ -207,9 +207,9 @@ app.post('/api/login', (req, res) => {
     const expectedUsername = process.env.ADMIN_USERNAME;
     const expectedHash = process.env.ADMIN_PASSWORD_HASH;
 
-    if (username === expectedUsername && 
+    if (username === expectedUsername &&
         bcrypt.compareSync(password, expectedHash)) {
-        
+
         console.log('Login successful');
         const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '24h' });
         res.json({ token });
@@ -217,6 +217,12 @@ app.post('/api/login', (req, res) => {
         console.log('Login failed: Invalid credentials');
         res.status(401).json({ error: 'Invalid credentials' });
     }
+});
+
+// Validate Token Route
+app.get('/api/validate-token', authenticateJWT, (req, res) => {
+    // If we reach here, authenticateJWT middleware has already verified the token
+    res.json({ valid: true, user: req.user });
 });
 
 app.post('/api/deploy', authenticateJWT, async (req, res) => {

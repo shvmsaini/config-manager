@@ -182,6 +182,12 @@ app.post('/api/login', (req, res) => {
     }
 });
 
+// Validate Token Route
+app.get('/api/validate-token', authenticateJWT, (req, res) => {
+    // If we reach here, authenticateJWT middleware has already verified the token
+    res.json({ valid: true, user: req.user });
+});
+
 app.post('/api/deploy', authenticateJWT, (req, res) => {
     const { files } = req.body;
 

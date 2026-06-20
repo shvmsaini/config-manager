@@ -71,17 +71,9 @@ const buildInitialData = () => {
     return initialData;
 };
 
-const loadFromServer = async (token: string | null): Promise<{ [fileName: string]: any }> => {
-    if (!token) {
-        return buildInitialData();
-    }
-
+const loadFromServer = async (authFetch: (url: string, options?: RequestInit) => Promise<Response>): Promise<{ [fileName: string]: any }> => {
     try {
-        const response = await fetch('/api/configs?' + Date.now(), {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await authFetch('/api/configs?' + Date.now());
 
         if (response.ok) {
             const data = await response.json();
@@ -114,21 +106,30 @@ export function useConfigData() {
     const [originalData, setOriginalData] = useState<{ [fileName: string]: any }>({});
     const [isLoading, setIsLoading] = useState(true);
     const [forceReloadKey, setForceReloadKey] = useState(0);
-    const { token } = useAuth();
+    const { authFetch, isAuthenticated, isLoading: authLoading } = useAuth();
 
     const reloadConfigs = () => {
         setForceReloadKey(prev => prev + 1);
     };
 
-    // Load configs from server on mount or when forceReloadKey changes
+    // Load configs from server only after auth is confirmed
     useEffect(() => {
         let mounted = true;
-        // NOTE: retryCount tracking for future retry logic
-        // let retryCount = 0;
         const maxRetries = 10;
         const retryDelay = 500;
 
         const loadConfigs = async () => {
+            // Wait for auth to finish loading
+            if (authLoading) {
+                return;
+            }
+
+            // Only load configs if authenticated
+            if (!isAuthenticated) {
+                setIsLoading(false);
+                return;
+            }
+
             setIsLoading(true);
 
             try {
@@ -138,7 +139,7 @@ export function useConfigData() {
                 // Retry fetching configs until we get data
                 for (let i = 0; i < maxRetries; i++) {
                     try {
-                        const serverData = await loadFromServer(token);
+                        const serverData = await loadFromServer(authFetch);
                         if (mounted && Object.keys(serverData).length > 0) {
                             setConfigData(serverData);
                             setOriginalData(serverData);
@@ -175,7 +176,7 @@ export function useConfigData() {
         return () => {
             mounted = false;
         };
-    }, [token, forceReloadKey]);
+    }, [isAuthenticated, authLoading, authFetch, forceReloadKey]);
 
     const handleValueChange = (activeTab: string, path: string[], value: any) => {
         setConfigData(prev => ({
