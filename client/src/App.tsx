@@ -17,7 +17,7 @@ import { DeployToast } from './components/DeployToast';
 import './index.css';
 
 function ConfigManager() {
-  const { token, logout } = useAuth();
+  const { logout } = useAuth();
 
   // Feature flags
   const SHOW_COMPACT_TOGGLE = false;
