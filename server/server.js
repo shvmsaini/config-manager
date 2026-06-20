@@ -141,6 +141,9 @@ app.get('/api/configs', async (req, res) => {
 
         // Try to get all from database first
         const dbConfigs = await db.getAllConfigs();
+        const dbConfigCount = Object.keys(dbConfigs).length;
+
+        console.log(`📊 /api/configs: Database returned ${dbConfigCount} configs`);
 
         // If database has some configs, use them with fallback to defaults
         CONFIG_FILES.forEach(fileName => {
@@ -152,8 +155,10 @@ app.get('/api/configs', async (req, res) => {
                 } else {
                     configs[fileName] = dbConfigs[fileName];
                 }
+                console.log(`   ✅ ${fileName}: Loaded from database`);
             } else {
                 // Fall back to filesystem defaults if not in database
+                console.log(`   ⚠️ ${fileName}: Not in database, falling back to defaults`);
                 const defaultPath = path.join(DEFAULT_DIR, fileName);
                 if (fs.existsSync(defaultPath)) {
                     try {

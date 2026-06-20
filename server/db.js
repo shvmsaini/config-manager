@@ -96,8 +96,8 @@ async function ensureSchema() {
         await pool.query(createTableQuery);
         console.log('✅ Database schema initialized');
 
-        // Check if table is empty and seed with defaults if needed
-        await seedDefaultsIfEmpty();
+        // Note: Seeding is handled by server.js:396 with proper DEFAULT_DIR parameter
+        // Do NOT call seedDefaultsIfEmpty() here without the defaultsDir parameter
     } catch (error) {
         console.error('❌ Error creating schema:', error.message);
         throw error;
@@ -110,7 +110,10 @@ async function ensureSchema() {
  * @param {string} defaultsDir - Path to defaults directory
  */
 async function seedDefaultsIfEmpty(defaultsDir) {
-    if (!pool) return;
+    if (!pool) {
+        console.log('⏭️ seedDefaultsIfEmpty: Skipped - database pool not available');
+        return;
+    }
 
     try {
         // Check if table has any data
@@ -118,17 +121,24 @@ async function seedDefaultsIfEmpty(defaultsDir) {
         const count = parseInt(countResult.rows[0].count);
 
         if (count > 0) {
-            console.log(`✅ Database already populated with ${count} configs`);
+            console.log(`✅ Database already populated with ${count} configs - seeding skipped`);
             return;
         }
 
         console.log('📥 Seeding database with default configs...');
 
         // Load defaults from filesystem
-        if (!defaultsDir || !fs.existsSync(defaultsDir)) {
-            console.log('⚠️ No defaults directory provided - skipping seed');
+        if (!defaultsDir) {
+            console.error('❌ seedDefaultsIfEmpty: No defaults directory provided!');
             return;
         }
+
+        if (!fs.existsSync(defaultsDir)) {
+            console.error(`❌ seedDefaultsIfEmpty: Defaults directory does not exist: ${defaultsDir}`);
+            return;
+        }
+
+        console.log(`   Loading defaults from: ${defaultsDir}`);
 
         const CONFIG_FILES = ['widgets.json', 'theme.json', 'navigation.json', 'pages.json', 'config.json'];
         let seedCount = 0;
@@ -144,12 +154,15 @@ async function seedDefaultsIfEmpty(defaultsDir) {
                 } catch (error) {
                     console.error(`  ❌ Error seeding ${fileName}:`, error.message);
                 }
+            } else {
+                console.log(`  ⚠️ Default file not found: ${filePath}`);
             }
         }
 
         console.log(`✅ Database seeded with ${seedCount} default configs`);
     } catch (error) {
         console.error('❌ Error seeding defaults:', error.message);
+        console.error('   Stack:', error.stack);
     }
 }
 
@@ -188,6 +201,8 @@ async function getConfig(configKey) {
  */
 async function getAllConfigs() {
     if (!pool) {
+        console.error('❌ getAllConfigs: Database pool not initialized!');
+        console.error('   This will cause fallback to filesystem defaults');
         return {};
     }
 
@@ -199,9 +214,12 @@ async function getAllConfigs() {
             configs[row.config_key] = row.config_data;
         });
 
+        console.log(`✅ getAllConfigs: Retrieved ${result.rows.length} configs from database`);
         return configs;
     } catch (error) {
-        console.error('Error fetching all configs:', error.message);
+        console.error('❌ getAllConfigs: Database query failed:', error.message);
+        console.error('   Error stack:', error.stack);
+        console.error('   This will cause fallback to filesystem defaults');
         return {};
     }
 }
